@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To-Do List</title>
+  <link rel="stylesheet" href="style.css"> </head>
+<body>
+  <h1>To-Do List</h1>
+  <form method="POST" action="/addTodo">
+    <input type="text" name="todoText" placeholder="Add a todo">
+    <button type="submit">Add</button>
+  </form>
+  <ul>
+
+  </ul>
+  <script>
+    async function toggleTodo(id, completed) {
+      const response = await fetch(`/toggle/${id}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `completed=${completed}`,
+      });
+      if (!response.ok) {
+        alert('Error toggling todo');
+      }
+    }
+  </script>
+</body>
+</html>
